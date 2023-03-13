@@ -1,10 +1,10 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
       ],
@@ -12,24 +12,39 @@ describe('AppComponent', () => {
         AppComponent
       ],
     }).compileComponents();
-  });
+  }));
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
+    const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'AngularRouting-new'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('AngularRouting-new');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('AngularRouting-new app is running!');
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.bold').textContent).toContain('MY PASTRY');
+  });
+  
+  it('should contain a Home router link', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('li').textContent).toContain('Home');
+  });
+  
+  it('should contain a Menu router link', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('li')[1].textContent).toContain('Menu');
+  });
+  
+  it('should contain a Contact Us router link', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelectorAll('li')[2].textContent).toContain('Contact Us');
   });
 });

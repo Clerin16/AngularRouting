@@ -5,7 +5,7 @@
 //   const browser = await puppeteer.launch();
 //   const page = await browser.newPage();
 
-//   // Navigate to the app's home page
+//   // Navigate to the app's home page+
 //   await page.goto('http://localhost:4200');
 
 //   // Click on the "Menu" link in the navigation menu
